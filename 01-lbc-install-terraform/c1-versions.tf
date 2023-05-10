@@ -26,8 +26,8 @@ terraform {
     bucket = "tf-remote-state-staging-talexo"
     key    = "dev/eks-lbc/terraform.tfstate"
     region = "us-west-2"
-    access_key = "AKIAYBYB2IVDCGV5J667"
-    secret_key = "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"
+    access_key = ""
+    secret_key = ""
 
     # For State Locking
     dynamodb_table = "dev-eks-lbc"    
