@@ -1,0 +1,49 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: tls-app
+  namespace: default
+spec:
+  host: www.nxtlvl.ai
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: tls-app-1
+  namespace: default
+spec:
+  host: www.nxtlvl.ai
+  subnets:
+    - labels: 
+        version: v1
+      name: httpbin-one
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
+---
+#apiVersion: networking.istio.io/v1beta1
+#kind: DestinationRule
+#metadata:
+#  name: tls-app-2
+#  namespace: default
+#spec:
+#  host: httpbin-two.default.svc.cluster.local
+#  trafficPolicy:
+#    tls:
+#      mode: ISTIO_MUTUAL
+---
+#apiVersion: networking.istio.io/v1beta1
+#kind: DestinationRule
+#metadata:
+#  name: tls-app-3
+#  namespace: default
+#spec:
+#  host: httpbin-three.default.svc.cluster.local
+#  trafficPolicy:
+#    tls:
+#      mode: ISTIO_MUTUAL
+---
+ 

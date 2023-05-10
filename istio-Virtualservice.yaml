@@ -1,0 +1,31 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: my-virtualservice
+spec:
+  hosts:
+    - "www.nxtlvl.ai"
+  gateways:
+    - my-gateway
+  http:
+    - match:
+        - port: 9443
+      route:
+        - destination:
+            host: httpbin-one
+            port:
+              number: 9443
+    - match:
+        - port: 7443
+      route:
+        - destination:
+            host: httpbin-two
+            port:
+              number: 7443
+    - match:
+        - port: 6443
+      route:
+        - destination:
+            host: httpbin-three
+            port:
+              number: 6443
