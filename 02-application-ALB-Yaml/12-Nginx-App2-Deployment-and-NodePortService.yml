@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: communication-nginx-deployment
+  labels:
+    app: communication-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: communication-nginx
+  template:
+    metadata:
+      labels:
+        app: communication-nginx
+    spec:
+      containers:
+        - name: communication-nginx
+          image: 553517729094.dkr.ecr.us-west-2.amazonaws.com/communication-backend
+          ports:
+            - containerPort: 6443
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: communication-nginx-nodeport-service
+  labels:
+    app: communication-nginx
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: / 
+spec:
+  type: NodePort
+  selector:
+    app: communication-nginx
+  ports:
+    - port: 6443
+      targetPort: 6443
