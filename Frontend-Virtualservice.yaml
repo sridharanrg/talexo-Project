@@ -1,0 +1,33 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: virtual-service-website
+  namespace: default
+spec:
+  hosts:
+    - 'website.nxtlvl.ai'
+  gateways:
+    - my-gateway
+  http:
+    - route:
+        - destination:
+            host: website
+            port:
+              number: 80
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: virtual-service-portal
+  namespace: default
+spec:
+  hosts:
+    - 'portal.nxtlvl.ai'
+  gateways:
+    - my-gateway
+  http:
+    - route:
+        - destination:
+            host: portal
+            port:
+              number: 80
